@@ -125,8 +125,12 @@ public class ListeSimple {
         if (r1 != tete && r2 != tete) {
             precedentR1 = getPrecedent(r1);
             precedentR2 = getPrecedent(r2);
-            precedentR1.setSuivant(r2);
-            precedentR2.setSuivant(r1);
+            if (precedentR1 != null) {
+                precedentR1.setSuivant(r2);
+            }
+            if (precedentR2 != null) {
+                precedentR2.setSuivant(r1);
+            }
         } else if (r1 == tete) {
             precedentR2 = getPrecedent(r2);
             if (precedentR2 != null) {

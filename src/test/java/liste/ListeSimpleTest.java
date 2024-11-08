@@ -314,4 +314,26 @@ class ListeSimpleTest {
         listeATester.echanger(r1, r2);
         assertEquals("ListeSimple(Noeud(2), Noeud(3), Noeud(1))", listeATester.toString());
     }
+
+    @Test
+    void echangerNoeudNonTeteAvecNoeudDansLaListe() {
+        listeATester.ajout(5);
+        listeATester.ajout(4);
+        listeATester.ajout(3);
+        Noeud r1 = listeATester.tete.getSuivant(); // 4
+        Noeud r2 = listeATester.tete.getSuivant().getSuivant(); // 5
+        listeATester.echanger(r1, r2);
+        assertEquals("ListeSimple(Noeud(3), Noeud(5), Noeud(4))", listeATester.toString());
+    }
+
+    @Test
+    void echangerNoeudNonTeteAvecNoeudTete() {
+        listeATester.ajout(5);
+        listeATester.ajout(4);
+        listeATester.ajout(3);
+        Noeud r1 = listeATester.tete; // 3
+        Noeud r2 = listeATester.tete.getSuivant(); // 4
+        listeATester.echanger(r1, r2);
+        assertEquals("ListeSimple(Noeud(4), Noeud(3), Noeud(5))", listeATester.toString());
+    }
 }
