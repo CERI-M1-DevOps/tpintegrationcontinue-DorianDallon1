@@ -255,4 +255,63 @@ public class ListeSimpleTest {
         System.out.println(listeATester);
         assertEquals(listeATester.toString(), "ListeSimple(Noeud(4), Noeud(2), Noeud(3), Noeud(1), Noeud(5))");
     }
+
+    @Test
+public void modifiePremierElementAbsent() {
+    listeATester.ajout(1);
+    listeATester.ajout(2);
+    listeATester.ajout(3);
+    listeATester.modifiePremier(5, 6); // 5 n'est pas dans la liste
+    assertEquals(listeATester.toString(), "ListeSimple(Noeud(3), Noeud(2), Noeud(1))");
+}
+
+@Test
+public void supprimePremierElementAbsent() {
+    listeATester.ajout(1);
+    listeATester.ajout(2);
+    listeATester.ajout(3);
+    listeATester.supprimePremier(4); // 4 n'est pas dans la liste
+    assertEquals(listeATester.toString(), "ListeSimple(Noeud(3), Noeud(2), Noeud(1))");
+    assertEquals(3, listeATester.getSize());
+}
+
+@Test
+public void modifieTousElementAbsent() {
+    listeATester.ajout(1);
+    listeATester.ajout(2);
+    listeATester.ajout(3);
+    listeATester.modifieTous(4, 5); // 4 n'est pas dans la liste
+    assertEquals(listeATester.toString(), "ListeSimple(Noeud(3), Noeud(2), Noeud(1))");
+}
+
+@Test
+public void echangerDeuxMemeNoeud() {
+    listeATester.ajout(1);
+    listeATester.ajout(2);
+    Noeud r = listeATester.tete;
+    listeATester.echanger(r, r); // échanger le même nœud avec lui-même
+    assertEquals(listeATester.toString(), "ListeSimple(Noeud(2), Noeud(1))");
+}
+
+@Test
+public void echangerDeuxNoeudsPremierEstTete() {
+    listeATester.ajout(1);
+    listeATester.ajout(2);
+    listeATester.ajout(3);
+    Noeud r1 = listeATester.tete; // 3
+    Noeud r2 = listeATester.tete.getSuivant(); // 2
+    listeATester.echanger(r1, r2);
+    assertEquals(listeATester.toString(), "ListeSimple(Noeud(2), Noeud(3), Noeud(1))");
+}
+
+@Test
+public void echangerDeuxNoeudsSecondEstTete() {
+    listeATester.ajout(1);
+    listeATester.ajout(2);
+    listeATester.ajout(3);
+    Noeud r1 = listeATester.tete.getSuivant(); // 2
+    Noeud r2 = listeATester.tete; // 3
+    listeATester.echanger(r1, r2);
+    assertEquals(listeATester.toString(), "ListeSimple(Noeud(2), Noeud(3), Noeud(1))");
+}
 }
