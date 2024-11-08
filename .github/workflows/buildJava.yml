@@ -13,6 +13,8 @@ jobs:
       # Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v4
+          with:
+            repository: '${{ github.repository }}'
 
       # Setup Java with version 21 and corretto distribution
       - name: Setup Java
@@ -24,3 +26,9 @@ jobs:
       # Build and package with Maven
       - name: Build and Package with Maven
         run: mvn -B package
+
+      - name: Build and analyze
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=CERI-M1-DevOps_tpintegrationcontinue-DorianDallon1
