@@ -336,4 +336,37 @@ class ListeSimpleTest {
         listeATester.echanger(r1, r2);
         assertEquals("ListeSimple(Noeud(4), Noeud(3), Noeud(5))", listeATester.toString());
     }
+
+    @Test
+    void echangerNoeudsTeteEtDernier() {
+        listeATester.ajout(3);
+        listeATester.ajout(2);
+        listeATester.ajout(1);
+        Noeud r1 = listeATester.tete.getSuivant().getSuivant();
+        Noeud r2 = listeATester.tete;
+        listeATester.echanger(r1, r2);
+        assertEquals("ListeSimple(Noeud(3), Noeud(2), Noeud(1))", listeATester.toString());
+    }
+
+    @Test
+    void echangerNoeudsAdjacentsAvecSecondCommeTete() {
+        listeATester.ajout(2);
+        listeATester.ajout(1);  // tete
+        // La liste est maintenant: 1 -> 2
+        Noeud r1 = listeATester.tete.getSuivant(); // noeud contenant 2
+        Noeud r2 = listeATester.tete;  // noeud contenant 1
+        listeATester.echanger(r1, r2);
+        assertEquals("ListeSimple(Noeud(2), Noeud(1))", listeATester.toString());
+    }
+
+    @Test
+    void echangerNoeudsAdjacentsAvecPremierCommeTete() {
+        listeATester.ajout(2);
+        listeATester.ajout(1);  // tete
+        // La liste est maintenant: 1 -> 2
+        Noeud r1 = listeATester.tete;  // noeud contenant 1
+        Noeud r2 = listeATester.tete.getSuivant(); // noeud contenant 2
+        listeATester.echanger(r1, r2);
+        assertEquals("ListeSimple(Noeud(2), Noeud(1))", listeATester.toString());
+    }
 }
